@@ -7,22 +7,22 @@ newX, newY = None, None
 
 print("===CSV CORRELATION FINDER===\n" + "By: Vahin Sharma")
 
-def getDataSource(data_path, x, y):
+def getds(dp, x, y):
     global newX
     global newY
     newX = x
     newY = y
     temp = []
     iceCreamSale = []
-    with open(data_path) as csv_file:
+    with open(dp) as csv_file:
         csv_reader = csv.DictReader(csv_file)
         for row in csv_reader:
             temp.append(float(row[x]))
             iceCreamSale.append(float(row[y]))
     return {"x":temp, "y":iceCreamSale}
 
-def findCorrelation(datasource):
-    correlation = cf(datasource["x"], datasource["y"])
+def findCorrelation(ds):
+    correlation = cf(ds["x"], ds["y"])
     x = ""
     if round(correlation[0, 1]) == -1.0:
         x = "There is an Inverse correlation"
@@ -33,5 +33,5 @@ def findCorrelation(datasource):
     print(x, "between '{}' and '{}'".format(newX, newY), "({})".format(correlation[0, 1]))
 
 while True:
-    datasource = getDataSource(input("Enter the path of the CSV file: "), input("Enter the row for X: "), input("Enter the row for Y: "))
-    findCorrelation(datasource)
+    ds = getds(input("Enter the path of the CSV file: "), input("Enter the row for X: "), input("Enter the row for Y: "))
+    findCorrelation(ds)
