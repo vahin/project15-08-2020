@@ -15,8 +15,8 @@ def getds(dp, x, y):
     temp = []
     iceCreamSale = []
     with open(dp) as csv_file:
-        csv_reader = csv.DictReader(csv_file)
-        for row in csv_reader:
+        reader = csv.DictReader(csv_file)
+        for row in reader:
             temp.append(float(row[x]))
             iceCreamSale.append(float(row[y]))
     return {"x":temp, "y":iceCreamSale}
