@@ -1,6 +1,6 @@
 import plotly.express as px
 import csv
-import numpy as np
+from numpy import corrcoef as cf
 newX, newY = None, None
 
 # Vahin Sharma
@@ -22,7 +22,7 @@ def getDataSource(data_path, x, y):
     return {"x":temp, "y":iceCreamSale}
 
 def findCorrelation(datasource):
-    correlation = np.corrcoef(datasource["x"], datasource["y"])
+    correlation = cf(datasource["x"], datasource["y"])
     x = ""
     if round(correlation[0, 1]) == -1.0:
         x = "There is an Inverse correlation"
